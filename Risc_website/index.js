@@ -14,6 +14,11 @@ var login_attempts = 3;
 
 function check_form() {
   var pass = document.getElementById("pass").value;
+  if(!/[A-Za-z0-9]{8,}/.test(pass)){
+      login_attempts = login_attempts - 1;
+      alert("Login Failed Now Only " + login_attempts + " Login Attempts Available");
+  }
+
   if (pass === password) {
     alert("SuccessFully Logged In");
     document.getElementById("pass").value = "";
