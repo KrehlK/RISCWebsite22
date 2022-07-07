@@ -77,3 +77,10 @@ function search(array, query) {
 console.log("Is this user in our database? " + search(result, { username: 'krehl', email: 'krehl@fake.com', password: 'bacon' }));
 
 
+async function mainEvent() {
+  console.log('script loaded')
+}
+
+
+// this actually runs first! It's calling the function above
+document.addEventListener('DOMContentLoaded', async () => mainEvent()); // the async keyword means we can make API requests
