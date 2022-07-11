@@ -14,33 +14,23 @@ var login_attempts = 3;
 
 function check_form() {
   var pass = document.getElementById("pass").value;
-  if(!/[A-Za-z0-9]{8,}/.test(pass)){
-      login_attempts = login_attempts - 1;
-      alert("Login Failed Now Only " + login_attempts + " Login Attempts Available");
-  }
-
-  if (pass === password) {
-    alert("SuccessFully Logged In");
-    document.getElementById("pass").value = "";
-  }
-  else {
-    if (login_attempts == 0) {
-      alert("No Login Attempts Available");
-      return false
-    }
-    else {
-      login_attempts = login_attempts - 1;
-      alert("Login Failed Now Only " + login_attempts + " Login Attempts Available");
-      if (login_attempts == 0) {
+  if (login_attempts == 0) {
         document.getElementById("pass").disabled = true;
         document.getElementById("form1").disabled = true;
-      }
-
+        return false;
+  } else if((!/[A-Za-z0-9]{8,}/.test(pass)) || pass!= password){
+      login_attempts = login_attempts - 1;
+      alert("Login Failed Now Only " + login_attempts + " Login Attempts Available");
       return false;
-    }
+      
+  }else if (pass === password) {
+    alert("SuccessFully Logged In");
+    document.getElementById("pass").value = "";
+    return true;
   }
-
-  return false;
+  else {
+    return false; 
+  }
 }	
 
 /* Reading the file using default
